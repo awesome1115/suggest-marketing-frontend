@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Sign Up | Attex - Responsive Tailwind CSS 3 Admin Dashboard</title>
+    <title>新規登録 | サージェストマーケティング</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta
         content="A fully featured admin theme which can be used to build CRM, CMS, etc., Tailwind, TailwindCSS, Tailwind CSS 3"
@@ -199,43 +199,52 @@
     <!-- Login Card -->
     <div class="relative flex flex-col items-center justify-center h-screen">
         <div class="flex justify-center">
-            <div class="max-w-md px-4 mx-auto">
+            <div class="max-w-md px-4 mx-auto" style="min-width: 450px;">
                 <div class="card overflow-hidden">
-
                     <!-- Logo -->
                     <div class="p-9 bg-primary">
-                        <a href="index.html" class="flex justify-center">
-                            <img src="./assets/images/logo.png" alt="logo" class="h-6">
+                        <a href="#" class="flex justify-center">
+                            <!-- <img src="./assets/images/logo.png" alt="logo" class="h-6"> -->
+                            <div class="text-center text-light font-bold text-lg">サージェストマーケティング</div>
                         </a>
                     </div>
 
                     <div class="p-9">
                         <div class="text-center mx-auto w-3/4">
-                            <h4 class="text-dark/70 text-center text-lg font-bold dark:text-light/80 mb-2">Free Sign Up
+                            <h4 class="text-dark/70 text-center text-lg font-bold dark:text-light/80 mb-2">新規登録
                             </h4>
-                            <p class="text-gray-400 mb-9">Don't have an account? Create your account, it takes less than
-                                a minute.</p>
                         </div>
 
                         <form action="#">
 
                             <div class="mb-6 space-y-2">
-                                <label for="fullname" class="font-semibold text-gray-500">Full Name</label>
-                                <input class="form-input" type="email" id="fullname" required=""
-                                    placeholder="Enter your email">
+                                <label for="fullname" class="font-semibold text-gray-500">ユーザー名(半角英数字４文字以上)</label>
+                                <input class="form-input" type="text" id="fullname" required=""
+                                    placeholder="ユーザー名を入力してください">
                             </div>
 
                             <div class="mb-6 space-y-2">
-                                <label for="emailaddress" class="font-semibold text-gray-500">Email address</label>
+                                <label for="emailaddress" class="font-semibold text-gray-500">メール</label>
                                 <input class="form-input" type="email" id="emailaddress" required=""
-                                    placeholder="Enter your email">
+                                    placeholder="メールアドレスを入力してください">
                             </div>
 
                             <div class="mb-6 space-y-2">
-                                <label for="password" class="font-semibold text-gray-500">Password</label>
+                                <label for="password" class="font-semibold text-gray-500">パスワード</label>
                                 <div class="flex items-center">
                                     <input type="password" id="password" class="form-input rounded-e-none"
-                                        placeholder="Enter your password">
+                                        placeholder="半角英数字６文字以上">
+                                    <span
+                                        class="px-3.5 py-1 bg-light/30 dark:bg-slate-700/60 border rounded-e -ms-px dark:border-white/10"><i
+                                            class="ri-eye-line text-lg"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="mb-6 space-y-2">
+                                <label for="repassword" class="font-semibold text-gray-500">パスワード再入力</label>
+                                <div class="flex items-center">
+                                    <input type="password" id="repassword" class="form-input rounded-e-none"
+                                        placeholder="パスワード再入力">
                                     <span
                                         class="px-3.5 py-1 bg-light/30 dark:bg-slate-700/60 border rounded-e -ms-px dark:border-white/10"><i
                                             class="ri-eye-line text-lg"></i></span>
@@ -246,13 +255,13 @@
                                 <div class="flex items-center">
                                     <input type="checkbox" class="form-checkbox rounded text-primary"
                                         id="checkbox-signin">
-                                    <label class="ms-2 font-semibold text-gray-600" for="checkbox-signin">I accept <a
-                                            href="#" class="text-gray-500">Terms and Conditions</a></label>
+                                    <label class="ms-2 font-semibold text-gray-600" for="checkbox-signin">私は<a href="#"
+                                            class="text-gray-500">プライバシーポリシー</a>に同意。</label>
                                 </div>
                             </div>
 
                             <div class="text-center mb-6">
-                                <button class="btn bg-primary text-white" type="submit"> Sign Up </button>
+                                <button class="btn bg-primary text-white" type="submit"> 新規登録 </button>
                             </div>
 
                         </form>
@@ -261,8 +270,9 @@
                 <!-- end card -->
 
                 <div class="text-center my-4">
-                    <p class="text-muted">Already have account? <a href="auth-login.html"
-                            class="text-muted ms-1 link-offset-3 underline underline-offset-4"><b>Log In</b></a></p>
+                    <p class="text-muted">すでに登録済みの方は、<a href="#"
+                            class="text-muted ms-1 link-offset-3 underline underline-offset-4"><b>こちら</b></a>からログインできます
+                    </p>
                 </div>
             </div>
         </div>
@@ -270,7 +280,7 @@
 
     <footer class="absolute bottom-0 inset-x-0">
         <p class="font-medium text-center p-6">
-            <script>document.write(new Date().getFullYear())</script> © Attex - Coderthemes.com
+            <!-- <script>document.write(new Date().getFullYear())</script> © Attex - Coderthemes.com -->
         </p>
     </footer>
 
