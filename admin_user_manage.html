@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ユーザー管理 | サージェストマーケティング</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc., Tailwind, TailwindCSS, Tailwind CSS 3" name="description">
+    <meta content="coderthemes" name="author">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- Gridjs Plugin css -->
+    <link href="assets/css/mermaid.min.css" rel="stylesheet" type="text/css" >
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- App css -->
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Icons css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Theme Config Js -->
+    <script src="assets/js/config.js"></script>
+    <style>
+          .switch-container {
+            position: relative;
+            border-radius: 3.125em;
+            box-shadow: 0 .125em .25em rgba(#000, .2);
+            overflow: hidden;
+            cursor: pointer;
+          }
+          
+          .switch-input {
+            -webkit-appearance: none;
+            appearance: none;
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+          }
+          
+          .switch-button {
+            display: inline-flex;
+            padding: 0 .375em;
+            border-radius: inherit;
+            border: .0625em solid #6b717b;
+            background-color: #aaafbb;
+            box-shadow: inset 0 0 .5em rgba(#000, .4);
+            transition-property: border-color, background-color;
+            transition-duration: .2s;
+            
+            .switch-input:checked + & {
+              border-color: #43316f;
+              background-color: #7550d9;
+            }
+          }
+          
+          .switch-button-inside {
+            display: inline-flex;
+            column-gap: 1em;
+            position: relative;
+            border-radius: inherit;
+            padding: .75em;
+            transform: translateX(-.375em);
+            background-image: linear-gradient(90deg, #c5c9d3 48%, #d5d7dd 52%);
+            box-shadow: 
+              inset .0625em 0 .0625em rgba(#fff, .4),
+              inset -.0625em 0 .0625em rgba(#fff, .4);
+            transition-property: transform;
+            transition-duration: .2s;
+            
+            &::after {
+              content: '';
+              position: absolute;
+              z-index: -1;
+              inset: 0;
+              border-radius: inherit;
+              background-image: linear-gradient(90deg, #926afe 48%, #885bff 52%);
+              box-shadow: 
+                inset .0625em 0 .0625em rgba(#fff, .2),
+                inset -.0625em 0 .0625em rgba(#fff, .2);
+              opacity: 0;
+              transition-property: opacity;
+              transition-duration: .2s;
+            }
+            
+            .switch-input:checked + .switch-button > & {
+              transform: translateX(.375em);
+              
+              &::after {
+                opacity: 1;
+              }
+            }
+          }
+          
+          .switch-icon {
+            width: 1em;
+            height: 1em;
+            fill: #fff;
+            filter: 
+              drop-shadow(0 .0625em .0625em rgba(#000, .4))
+              drop-shadow(0 0 .25em rgba(#fff, .4))
+              drop-shadow(0 0 .25em rgba(#fff, .4));
+            transition-property: fill;
+            transition-duration: .2s;
+            
+            &.off {
+              .switch-input:checked + .switch-button & {
+                fill: #704ccf;
+                filter: none;
+              }
+            }
+            
+            &.on {
+              .switch-input:not(:checked) + .switch-button & {
+                fill: #767c86;
+                filter: none;
+              }
+            }
+          }
+          
+    </style>
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div class="flex wrapper">
+
+        <div class="page-content">
+
+            <main class="p-6">
+
+                <div class="flex flex-col gap-6">
+                    <div class="card">
+                        <div class="p-6">
+                            <h3 class="card-title mb-4">ユーザー管理</h3>
+
+                            <div class="overflow-x-auto">
+                                <div class="min-w-full inline-block align-middle">
+                                    <div class="overflow-hidden">
+                                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">番号</th>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">ユーザー名</th>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">生年月日</th>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">メール</th>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">住所</th>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">会社</th>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">地域</th>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">削除</th>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">ステータス</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                                <tr>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">1</th>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">Yamauchi0123</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">23 July,1978</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">YamauchiYumia@cloudgrade.co.uk</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">東京都品川区</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">OO株式会社</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">日本</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <button type="button" class="btn btn-sm bg-danger text-white"><i class="ri-delete-bin-5-line text-sm"></i></button>
+                                                    </td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <input type="checkbox" id="switch1" checked="" data-switch="primary">
+                                                        <label for="switch1" data-on-label="On" data-off-label="Off"></label>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">2</th>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">Yamauchi0123</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">23 July,1978</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">YamauchiYumia@cloudgrade.co.uk</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">東京都品川区</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">OO株式会社</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">日本</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <button type="button" class="btn btn-sm bg-danger text-white"><i class="ri-delete-bin-5-line text-sm"></i></button>
+                                                    </td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <input type="checkbox" id="switch2" checked="" data-switch="primary">
+                                                        <label for="switch2" data-on-label="On" data-off-label="Off"></label>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">3</th>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">Yamauchi0123</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">23 July,1978</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">YamauchiYumia@cloudgrade.co.uk</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">東京都品川区</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">OO株式会社</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">日本</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <button type="button" class="btn btn-sm bg-danger text-white"><i class="ri-delete-bin-5-line text-sm"></i></button>
+                                                    </td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <input type="checkbox" id="switch3" checked="" data-switch="primary">
+                                                        <label for="switch3" data-on-label="On" data-off-label="Off"></label>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">4</th>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">Yamauchi0123</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">23 July,1978</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">YamauchiYumia@cloudgrade.co.uk</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">東京都品川区</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">OO株式会社</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">日本</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <button type="button" class="btn btn-sm bg-danger text-white"><i class="ri-delete-bin-5-line text-sm"></i></button>
+                                                    </td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <input type="checkbox" id="switch4" checked="" data-switch="primary">
+                                                        <label for="switch4" data-on-label="On" data-off-label="Off"></label>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">5</th>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">Yamauchi0123</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">23 July,1978</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">YamauchiYumia@cloudgrade.co.uk</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">東京都品川区</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">OO株式会社</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">日本</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <button type="button" class="btn btn-sm bg-danger text-white"><i class="ri-delete-bin-5-line text-sm"></i></button>
+                                                    </td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <input type="checkbox" id="switch5" checked="" data-switch="primary">
+                                                        <label for="switch5" data-on-label="On" data-off-label="Off"></label>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">6</th>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">Yamauchi0123</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">23 July,1978</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">YamauchiYumia@cloudgrade.co.uk</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">東京都品川区</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">OO株式会社</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">日本</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <button type="button" class="btn btn-sm bg-danger text-white"><i class="ri-delete-bin-5-line text-sm"></i></button>
+                                                    </td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <input type="checkbox" id="switch6" checked="" data-switch="primary">
+                                                        <label for="switch6" data-on-label="On" data-off-label="Off"></label>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">7</th>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">Yamauchi0123</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">23 July,1978</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">YamauchiYumia@cloudgrade.co.uk</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">東京都品川区</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">OO株式会社</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">日本</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <button type="button" class="btn btn-sm bg-danger text-white"><i class="ri-delete-bin-5-line text-sm"></i></button>
+                                                    </td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <input type="checkbox" id="switch7" checked="" data-switch="primary">
+                                                        <label for="switch7" data-on-label="On" data-off-label="Off"></label>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">8</th>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">Yamauchi0123</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">23 July,1978</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">YamauchiYumia@cloudgrade.co.uk</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">東京都品川区</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">OO株式会社</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">日本</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <button type="button" class="btn btn-sm bg-danger text-white"><i class="ri-delete-bin-5-line text-sm"></i></button>
+                                                    </td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <input type="checkbox" id="switch8" checked="" data-switch="primary">
+                                                        <label for="switch8" data-on-label="On" data-off-label="Off"></label>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th scope="col" class="px-4 py-4 text-start text-sm font-medium text-gray-500">9</th>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">Yamauchi0123</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">23 July,1978</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">YamauchiYumia@cloudgrade.co.uk</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">東京都品川区</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">OO株式会社</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">日本</td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <button type="button" class="btn btn-sm bg-danger text-white"><i class="ri-delete-bin-5-line text-sm"></i></button>
+                                                    </td>
+                                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-200">
+                                                        <input type="checkbox" id="switch9" checked="" data-switch="primary">
+                                                        <label for="switch9" data-on-label="On" data-off-label="Off"></label>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+    <!-- Plugin Js -->
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="assets/libs/lucide/umd/lucide.min.js"></script>
+    <script src="assets/libs/@frostui/tailwindcss/frostui.js"></script>
+
+    <!-- App Js -->
+    <script src="assets/js/app.js"></script>
+
+</body>
+
+</html>
